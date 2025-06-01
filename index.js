@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 const app = express();
 require("./db");
 
@@ -15,7 +15,12 @@ app.use(cors());
 app.use(express.json());
 
 // Swagger documentation route
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// test route to test deployment
+app.get("/test", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/actions", actionRoutes);
