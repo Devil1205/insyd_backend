@@ -10,16 +10,6 @@ const userRoutes = require("./routes/userRoutes");
 const actionRoutes = require("./routes/actionRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const startQueueWorker = require("./queue");
-import path from "path";
-import { fileURLToPath } from "URL";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-export const __swaggerDistPath = path.join(
-  __dirname,
-  "node_modules",
-  "swagger-ui-dist"
-);
 
 app.use(cors());
 app.use(express.json());
