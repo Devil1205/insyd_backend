@@ -11,11 +11,22 @@ const actionRoutes = require("./routes/actionRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const startQueueWorker = require("./queue");
 
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 app.use(cors());
 app.use(express.json());
 
 // Swagger documentation route
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customCss:
+      ".swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }",
+    customCssUrl: CSS_URL,
+  })
+);
 
 // test route to test deployment
 app.get("/test", (req, res) => {
